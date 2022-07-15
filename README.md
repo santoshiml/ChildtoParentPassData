@@ -1,70 +1,90 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TITLE : HOW TO PASS DATA FROM CHILD COMPONENT TO PARENT COMPONENT.
 
-## Available Scripts
+1. Create Parent file and Child file with js or jsx extension.
 
-In the project directory, you can run:
 
-### `npm start`
+2. Create function in Parent and child file, fucntion name always start with Capital letter. 
+ex: 
+import React,{useState} from 'react';
+function Parent(){
+  return(
+    <>
+    </>
+   )
+}
+export default Parent;
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3.  Now Create Child file this Child file import in Parent component and call it under return function.
 
-### `npm test`
+4. Now create a function called childToParent in the Parent file and pass  as a  props to the child Component.
+ex:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+import React,{useState} from 'react';
+import Child from './child'
 
-### `npm run build`
+function Parent(){
+  
+  const childToParent = (childData) =>{
+   
+  }
+  return(
+    <>
+    <Child childToParent={childToParent}/>
+    <h2>{data}</h2>
+    </>
+    )
+}
+export default Parent;
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. In the Child Component use function as a props.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+6. In the child file create a variable called data and pass a string like "Child data pass to Parent componet";
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+7. Now Create a button in Child component and pass  this props function on the Event click function i.e. onClick and pass data variable.  
+Example:
+import React from 'react';
 
-### `npm run eject`
+function Child({childToParent}){
+	const data = ' child data to parent data';
+	return(
+		<>
+		<p>Child Component</p>
+		<button onClick={() =>childToParent(data)}>clickbtn</button>
+		</>
+		)
+} 
+export default Child;
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+8. Now In the Parent file create a state Because we will set our data while click on the button.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+9. Now in the parent file function i.e.childToParent pass child props which we have pass in the child file to ChildToParent function.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+10. Now set the  state with child props data.  
+function Parent(){
+  const[data, setData] = useState();
+  const childToParent = (childData) =>{
+    setData(childData)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  }
+  return(
+    <>
+    <Child childToParent={childToParent}/>
+    <h2>{data}</h2>
+    </>
+    )
+}
+export default Parent; 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+11. In the output when click on the button show the child data which we have pass as a props to the Parent Component.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Thank You!
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
