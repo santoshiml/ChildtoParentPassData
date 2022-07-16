@@ -82,6 +82,7 @@ export default Parent;
 
 11. In the output when click on the button show the child data which we have pass as a props to the Parent Component.
 
+
 Thank You!
 
 
